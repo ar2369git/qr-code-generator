@@ -32,35 +32,13 @@ Before you begin, ensure you have the following:
 
 Follow these steps to get your QR Code Generator up and running.
 
-### 1. Clone the Repository
 
-First, clone the project to your local machine:
-
-```bash
-git clone https://github.com/<your-github-username>/qr-code-generator.git
-cd qr-code-generator
-
-## Repository Structure
-
-qr-code-generator/
-├── .github/
-│   └── workflows/
-│       └── docker-publish.yml # GitHub Actions workflow for building and pushing the Docker image
-├── .gitignore               # Specifies intentionally untracked files to ignore
-├── Dockerfile               # Defines the Docker image
-├── main.py                  # The core QR code generation script
-├── requirements.txt         # Lists Python dependencies
-└── README.md                # This project documentation
-
-## Getting Started
-
-Follow these steps to get your QR Code Generator up and running.
 
 ### 1. Clone the Repository
 
 First, clone the project to your local machine:
 
-```bash
+
 git clone [https://github.com/](https://github.com/)<your-github-username>/qr-code-generator.git
 cd qr-code-generator
 
@@ -69,7 +47,7 @@ Remember to replace `<your-github-username>` with your actual GitHub username.
 ### 2. Install Python Dependencies (Local Development)
 If you plan to run the application locally without Docker, install the Python dependencies:
 
-```bash
+
 python3 -m venv .venv
 # On macOS/Linux:
 source .venv/bin/activate
@@ -91,13 +69,13 @@ This command will create a qr.png file inside the qr_codes/ directory in your pr
 ### Build the Image
 Build the Docker image for the application:
 
-```bash
+
 docker build -t qr-code-generator-app .
 
 ### Run the Container
 Run the Docker container to generate a QR code. The `-v` flag maps a local directory to the container's output directory, ensuring your generated QR codes persist on your host machine.
 
-```bash
+bash
 docker run --rm \
   -v "$(pwd)/qr_codes:/app/qr_codes" \
   qr-code-generator-app \
@@ -108,7 +86,7 @@ You can override the default URL by specifying `--url` after the image name, as 
 ### Cleanup
 To remove the Docker image from your local system:
 
-```bash
+
 docker rmi qr-code-generator-app
 
 You can override the default URL by specifying `--url` after the image name, as shown in the example above.
@@ -116,7 +94,6 @@ You can override the default URL by specifying `--url` after the image name, as 
 ### Cleanup
 To remove the Docker image from your local system:
 
-```bash
 docker rmi qr-code-generator-app
 
 ## Pushing to Docker Hub
@@ -125,13 +102,13 @@ To publish your Docker image to Docker Hub, follow these steps:
 ### Log In
 First, log in to Docker Hub from your terminal. When prompted for a password, enter your Docker Hub Personal Access Token (PAT).
 
-```bash
+
 docker login
 
 ### Tag the Image
 Tag your local image with your Docker Hub username and the desired repository name. This makes it ready for pushing.
 
-```bash
+
 docker tag qr-code-generator-app \
   <your-dockerhub-username>/qr-code-generator-app:latest
 
@@ -140,7 +117,7 @@ Remember to replace `<your-dockerhub-username>` with your actual Docker Hub user
 ### Push the Image
 Finally, push the tagged image to Docker Hub:
 
-```bash
+
 docker push <your-dockerhub-username>/qr-code-generator-app:latest
 
 ### Verify
@@ -167,7 +144,7 @@ To enable automated publishing, ensure you've added your Docker Hub credentials 
 Keep the following in mind when setting up your project:
 
 * **Git Remote URL:** When setting up your Git remote, remember to replace `<your-github-username>`:
-    ```bash
+    
     git remote add origin [https://github.com/](https://github.com/)<your-github-username>/qr-code-generator.git
     ```
 * **Dockerfile Default URL:** You can update the default URL used by the Docker image by modifying the `CMD ["--url", "..."]` instruction in your `Dockerfile`.
